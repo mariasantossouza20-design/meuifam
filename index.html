@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head> <!--INSTRUMENTOS DO PROGRAMADOR-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>®ψΣ - IFA CCMSCTM</title>
+    <link rel="icon" type="image/svg" href="img/Logo.svg">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<body> <!--CORPO DA PÁGINA INICIAL-->
+    <header class="cabeçalho"> <!--CABEÇALHO E CLASSE PARA O CSS STYLE-->
+        <div class="container"> <!--UMA DIVISÃO PARA COMPORTAR OS ELEMENTOS DO CABEÇALHO E AS CLASSES DE CSS-->
+            <input type="checkbox" id="menu" class="container__botao"> <!--Cria caixa de seleção (checkbox) interativa, usada para controlar elementos de interface (AQUI: menus "hambúrguer" responsivos).--> 
+            <label for="menu" class="container__rotulo"> <!--A área clicável que interage com o botão do menu-->
+                <span class="cabeçalho__menu-hamburguer container__imagem"></span> <!--Estiliza o menu hamburger-->
+            
+    </label>
+        <ul class="lista-menu"> <!-- Lista Oculta de links de Navegação do site no HAMBURGER PARA O CELULAR ou MOBILE-->
+            <li class="lista-menu__titulo">DISCIPLINAS</li>
+                     <li class="lista-menu__item">
+                        <a href="metodologia.html" class="lista-menu__link">metodologia</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Biologia</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Física</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Filosofia</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Geografia</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">História</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Letras</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Linguagens</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Matemática</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Química</a>
+                    </li>
+                    <li class="lista-menu__item">
+                        <a href="#" class="lista-menu__link">Sociologia</a>
+                    </li>
+            </ul> <!--Fim da Lista de Navegação de celular/mobile-->
+    
+    
+            <a href="index.html"><!--IMAGEM DA LOGO COM LINK PARA A HOME PAGE-->
+               <img src="img/Logo.svg" alt="Logo da Alurabooks" class="container__imagem">
+            </a><!-- LOGO DO SITE NO CABEÇALHO E CLASSE DO CSS-->
+            <h1 class="container__titulo"><b class="container__titulo--negrito">IFA ®ψΣ</b> CCMSCTM</h1>
+        </div> <!-- TÍTULO DO SITE NO CABEÇALHO E CLASSE DO CSS-->
+
+        <ul><!--LISTA COM LINKS PARA OS FAVORITOS E MINHA ESTANTE - DESATIVADOS-->
+            <li class="opções__item"><a href="#" class="opções__link"></a></li> <!--Favoritos-->            
+        <div class="container">
+            <li class="opções__item"><a href="#" class="opções__link"></a></li> <!--Minha Estante-->
+        </ul>
+
+                           <!--IMAGENS LINKADAS DOS FAVORITOS, MINHA SACOLA E MEU PERFIL - APARENTES, MAS NÃO FUNCIONAIS-->
+            <a href="#"><img src="img/Favoritos.svg" alt="Meus favoritos"
+                class="container__imagem container__imagem-transparente"></a>
+            <a href="#" class="container__link">
+                <img src="img/Compras.svg" alt="Carrinhos de compras" class="container__imagem">
+                <p class="container__texto">Minha sacola</p>
+            </a>
+            <a href="#" class="container__link">
+                <img src="img/Usuario.svg" alt="Meu perfil" class="container__imagem">
+                <p class="container__texto">Meu perfil</p>
+            </a> <!--FIM DO CAMPO DOS LINKS NO CELULAR OU MOBILE-->
+
+ <ul class="opções"> <!-- LISTA VISÍVEL DE LINKS DE NAVEGAÇAO do site no HAMBURGER DO CBEÇALHO PARA O DESKTOP-->
+            <input type="checkbox" id="opções-menu" class="opções__botão"> <!--input cria um marcador clicável, id identifica para label usar o for e endereçar a ação, o class leva ao CSS-->
+            <label for="opções-menu" class="opções__rotulo"> <!--ENDEREÇADOR DO S LINKS DO MENU HAMBURBER-->
+                <li class="opções__item">DISCIPLINAS</li> <!--TÍTULO DO MENU HAMBRGER -->
+            </label>
+
+            <ul class="lista-menu"> <!-- LISTA OCULTA DE LINKS DE NAVEGAÇÃO do site no HAMBURGER PARA O DESKTOP E CLASSE DO CSS-->
+                <li class="lista-menu__item">
+                    <a href="metodologia.html" class="lista-menu__link">metodologia</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Biologia</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Física</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Filosofia</a>
+                </li>
+                  <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Geografia</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">História</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Letras</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Linguagens</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Matemática</a>
+                </li>
+                 <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Química</a>
+                </li>
+                <li class="lista-menu__item">
+                    <a href="#" class="lista-menu__link">Sociologia</a>
+                </li>
+
+            </ul> <!--FIM DA LISTA DE NAVEGAÇAO DO DESKTOP-->
+
+        </div>
+    
+    </header>  <!--FIM DO CABEÇALHO-->
+
+
+    
+    <section class="banner"> <!--Primeiro Espaço editável da página inicial- UMA SECTION, UMA REGIÃO VISUAL NA HOME PAGE-->
+         <h1 class="titulo">®ψΣ - IFA CCMSCTM </h1>
+        <h2 class="banner__titulo">Física - Robótica/Programação & Tecnociência</h2>
+        <p class="banner__texto">MOBILIDADE & ACESSIBILIDE</p>    
+    </section>
+
+
+                <!--INÍCIO DO CARROSSEL DE IMAGENS E CLASS DO CSS-->
+    <section class="carrossel">
+        <h1 class="carrossel__titulo">CONSTRUÇÕES E APRENDIZAGENS</h1>
+        <!-- CONTEÚDO DO CARROSSEL, SLIDES -->
+        <div class="carrossel__container"> <!--AGRPAMENTO DOS SLIDES-->
+            <div class="swiper"> <!--ORGANIZA O INICIA DO DESLIZAMENTO, MAS REQUER O WRAPPEER -->
+                <div class="swiper-pagination"></div> <!--ORGANIZA A INDERIAÇÃO, ALOCAÇÃO DOS SLIDES PARA EXECUÇÃO-->
+
+                <div class="swiper-wrapper"> <!--ORGANIZA E POSSIBILITA A TRANSIÇÃO DOS SLIDES--> 
+                    <!-- ALOCAÇÃO DOS SLIDES -->
+                    <div class="swiper-slide"><img src="img/git.svg" alt="Comunidade GitHub"></div>
+                    <div class="swiper-slide"><img src="img/git1.svg" alt="Repositórios e publicações"></div>
+                    <div class="swiper-slide"><img src="img/tink.svg" alt="Simuladores de robótica"></div>
+                    <div class="swiper-slide"><img src="img/tink3.svg" alt="Programaçao e publicações"></div>
+                    <div class="swiper-slide"><img src="img/tink.svg" alt="Códigos e simuladores"></div>
+                    <div class="swiper-slide"><img src="img/ifa.svg" alt="Projeto e publicações"></div>
+                    <div class="swiper-slide"><img src="img/vs2.svg" alt="Códigos e simuladores"></div>
+                </div>
+
+                <!-- HABILITA A NAVEGAÇÃO POR BOTÕES -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section> <!--FIM DO CARROSSEL-->
+
+    <hr /> <!--LINHA HORIZONTAL DE SEPARAÇÃO-->
+
+
+
+      <!--JAVA PARA CARROSSEL DE SLIDES DINÂMICO E MANUAL POR SETAS-->
+<script>
+  const swiper = new Swiper('.swiper', {
+    // Configuração da navegação (setas funcionando)
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // Paginação (opcional)
+    pagination: {                
+      el: '.swiper-pagination',
+      clickable: true, // Adiciona clicabilidade aos pontos
+    },
+
+    // Configurações para Loop Infinito
+    loop: true, // Habilita o loop
+    slidesPerView: 2, // Quantidade de slides visíveis
+    spaceBetween: 5, // Espaçamento
+    
+    // Opcional: Adicionar autoplay para ser automático
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false, // Mantém o autoplay após usar as setas
+    },
+  });
+</script>   <!--FIM DO CÓDIGO JAVA E UTILIZAÇÃO-->
+             
+
+
+         <!--CÓDIGO JAVA PAUSADO, SEM AÇÃO DAS SETAS-->
+<script>
+// Certifique-se de importar o Autoplay se estiver usando módulos
+// import Swiper, { Navigation, Pagination, Autoplay } from 'swiper'; 
+// Swiper.use([Navigation, Pagination, Autoplay]);
+
+//const swiper = new Swiper('.swiper', {
+  // Configuração da navegação
+  //spaceBetween: 5,
+  //slidesPerView: 2, // Pode ser 'auto' para slides dinâmicos
+  
+  //navigation: {
+    //nextEl: '.swiper-button-next',
+    //prevEl: '.swiper-button-prev',
+  //},
+  
+  // Opcionais
+  //pagination: { el: '.swiper-pagination', clickable: true },
+
+  // --- ALTERAÇÕES PARA INFINITO/DINÂMICO ---
+  //loop: true, // Habilita o loop infinito
+  
+ // autoplay: {
+   // delay: 0, // 0ms para efeito contínuo (marquee)
+   // disableOnInteraction: false, // Continua mesmo após interagir
+ // },
+  
+ // speed: 15000, // Velocidade da transição (aumente para ser mais lento)
+  
+  // Opcional: Se quiser que mova suavemente sem parar
+  // freeMode: true, 
+  // freeModeSticky: true, 
+  
+  // --- Garante que o Swiper se atualize ao adicionar itens ---
+  // observer: true,
+  //observeParents: true,
+//});
+
+ </script>
+
+
+
+    
+    <div class="rodapepadrao"> <!--RODAPÉ-->
+         CRÉDITOS: EquipeAlura/SEED-PR. Autoras e autores de códigos, imagens, sons e demais conhecimentos utilzados e multiplicados neste projeto aberto. Sobretudo, toda gratidão por gentis críticas e generosa motivação creditadas por estimadas e valorosos estudantes.
+          <div class="copyright">© Copyright Física Renato Pereira ®ψΣ - Ed. 00-10/2024. Rev. 01-05/2026.</div>
+          </div>
+
+    
+</body> <!--FIM DO CORPO DA FOE PAGE-->
+
+</html> <!--FIM DO CÓDIGO-->

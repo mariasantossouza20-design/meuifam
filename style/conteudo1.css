@@ -97,8 +97,8 @@
     background-color:lightgray; /* Cor de fundo para visualização */
     color: white; /* Cor do texto */
     text-align: center;
-    padding: 20px 0;
-    width: 48%; /* Define que cada divisão ocupará cerca de 1/4 da tela (menos a margem) */
+    padding: 2px 0;
+    width: 49%; /* Define que cada divisão ocupará cerca de 1/4 da tela (menos a margem) */
 }
 
 

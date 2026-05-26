@@ -148,30 +148,26 @@
 
 
                 <!--INÍCIO DO CARROSSEL DE IMAGENS E CLASS DO CSS-->
-    <section class="carrossel">
-        <h1 class="carrossel__titulo">CONSTRUÇÕES E APRENDIZAGENS</h1>
-        <!-- CONTEÚDO DO CARROSSEL, SLIDES -->
-        <div class="carrossel__container"> <!--AGRPAMENTO DOS SLIDES-->
-            <div class="swiper"> <!--ORGANIZA O INICIA DO DESLIZAMENTO, MAS REQUER O WRAPPEER -->
-                <div class="swiper-pagination"></div> <!--ORGANIZA A INDERIAÇÃO, ALOCAÇÃO DOS SLIDES PARA EXECUÇÃO-->
-
-                <div class="swiper-wrapper"> <!--ORGANIZA E POSSIBILITA A TRANSIÇÃO DOS SLIDES--> 
-                    <!-- ALOCAÇÃO DOS SLIDES -->
-                    <div class="swiper-slide"><img src="img/git.svg" alt="Comunidade GitHub"></div>
-                    <div class="swiper-slide"><img src="img/git1.svg" alt="Repositórios e publicações"></div>
-                    <div class="swiper-slide"><img src="img/tink.svg" alt="Simuladores de robótica"></div>
-                    <div class="swiper-slide"><img src="img/tink3.svg" alt="Programaçao e publicações"></div>
-                    <div class="swiper-slide"><img src="img/tink.svg" alt="Códigos e simuladores"></div>
-                    <div class="swiper-slide"><img src="img/ifa.svg" alt="Projeto e publicações"></div>
-                    <div class="swiper-slide"><img src="img/vs2.svg" alt="Códigos e simuladores"></div>
-                </div>
-
-                <!-- HABILITA A NAVEGAÇÃO POR BOTÕES -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </div>
-    </section> <!--FIM DO CARROSSEL-->
+<section class="carrossel"> 
+  <h1 class="carrossel__titulo">CONSTRUÇÕES E APRENDIZAGENS</h1> 
+  <!-- Adicionamos o id "carrossel-fullscreen" aqui -->
+  <div class="carrossel__container" id="carrossel-fullscreen"> 
+    <div class="swiper"> 
+      <div class="swiper-pagination"></div> 
+      <div class="swiper-wrapper"> 
+        <div class="swiper-slide"><img src="img/git.svg" alt="Comunidade GitHub"></div> 
+        <div class="swiper-slide"><img src="img/git1.svg" alt="Repositórios e publicações"></div> 
+        <div class="swiper-slide"><img src="img/tink.svg" alt="Simuladores de robótica"></div> 
+        <div class="swiper-slide"><img src="img/tink3.svg" alt="Programaçao e publicações"></div> 
+        <div class="swiper-slide"><img src="img/tink.svg" alt="Códigos e simuladores"></div> 
+        <div class="swiper-slide"><img src="img/ifa.svg" alt="Projeto e publicações"></div> 
+        <div class="swiper-slide"><img src="img/vs2.svg" alt="Códigos e simuladores"></div> 
+      </div> 
+      <div class="swiper-button-prev"></div> 
+      <div class="swiper-button-next"></div> 
+    </div> 
+  </div> 
+</section> <!--FIM DO CARROSSEL-->
 
     <hr /> <!--LINHA HORIZONTAL DE SEPARAÇÃO-->
 
@@ -247,6 +243,30 @@
 
  </script>
 
+<script>
+
+    const carrosselContainer = document.getElementById('carrossel-fullscreen');
+
+// Executa ao clicar duas vezes no carrossel (evita conflito com arrastar os slides)
+carrosselContainer.addEventListener('dblclick', () => {
+  if (!document.fullscreenElement) {
+    // Entra em tela cheia
+    carrosselContainer.requestFullscreen()
+      .catch(err => console.error(`Erro ao ativar tela cheia: ${err.message}`));
+  } else {
+    // Sai da tela cheia se já estiver nela
+    document.exitFullscreen();
+  }
+});
+
+// Força o Swiper a atualizar o layout após mudar para tela cheia
+document.addEventListener('fullscreenchange', () => {
+  // Substitua "meuSwiper" pela variável onde você instanciou o seu Swiper
+  if (typeof meuSwiper !== 'undefined') {
+    setTimeout(() => meuSwiper.update(), 300); 
+  }
+});
+</script>
 
 
     

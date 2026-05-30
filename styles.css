@@ -29,7 +29,7 @@ body, html {
 .titulo-digitando {
     font-family: monospace;
     font-size: 25px;
-    color:linear-gradient(to right, #efecec, #21024c); 
+    color: darkred; 
     overflow: hidden;
     white-space: nowrap;
     border-right: px solid;

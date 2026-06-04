@@ -19,7 +19,7 @@
 }
 
 .cabeçalho {
-    background-color: rgb(135, 114, 250);
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;

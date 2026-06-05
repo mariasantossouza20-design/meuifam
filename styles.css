@@ -57,20 +57,17 @@ body, html {
 .gradient-text {
   font-family: Garamond;
   font-size: 4vw;
+  text-align: center;
   color: #440505;
   background: linear-gradient(97.54deg, black 20%, yellow 15%, blue 20%, #110003 25%, darkred 30%, rgb(2, 66, 15) 35%);
-  background-size: 400%;
-  -webkit-background-clip: text;
+  background-size: 400%; /* Aumenta o tamanho do fundo para animar */
+  -webkit-background-clip: text; /* Recorta o fundo no formato do texto */
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: degrade-animation 15s ease infinite;
-  margin-bottom: 0%;
-  margin-top: 0vw;
-  
-  /* Novas propriedades adicionadas */
-  white-space: nowrap; /* Impede a quebra de linha */
-  text-align: center;  /* Centraliza o texto no container */
-  display: block;      /* Garante o alinhamento se for uma tag inline */
+  -webkit-text-fill-color: transparent; /* Torna a cor original transparente */
+  animation: degrade-animation 15s ease infinite; /* Animação */
+margin-bottom: 0%;
+margin-top: 0vw;
+margin-right: 0.5%
 }
 
 @keyframes degrade-animation {
@@ -78,4 +75,3 @@ body, html {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-

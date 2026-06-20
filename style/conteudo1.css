@@ -60,27 +60,28 @@
 
 
 .explica {
-     background-color:lightgray;
+     background-color: white;
      color:#3c0707;
      font-family: Georgia, 'Times New Roman', Times, serif;
      font-size: 110%;
      text-align: justify;
-     margin-top: 2vw;
+     margin-top: 0vw;
+     margin-bottom: 0vw:
      margin-left: 1%;
      margin-right: 1vw;
 }
 
 .explica__texto {
-    margin-top: 01vw;
-    margin-bottom: 1.5vw;
+    margin-top: 0vw;
+    margin-bottom: 0vw;
     margin-left: 2vw;
 }
 
 
 .explica__tipo {
     margin-top: 0vw;
-    margin-bottom: vw;
-    margin-left: 01vw;
+    margin-bottom: 0vw;
+    margin-left: 1vw;
 }
 
 
@@ -94,8 +95,8 @@
 }
 
 .caixa {
-    background-color:lightgray; /* Cor de fundo para visualização */
-    color: white; /* Cor do texto */
+    background-color: white; /* Cor de fundo para visualização */
+    color: darkred; /* Cor do texto */
     text-align: center;
     padding: 1px 0;
     width: 49%; /* Define que cada divisão ocupará cerca de 1/4 da tela (menos a margem) */
@@ -142,5 +143,3 @@ margin-top: 1vw;
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-

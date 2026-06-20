@@ -60,7 +60,7 @@
 
 
 .explica {
-     background-color:lightgray;
+     background-color: white;
      color:#3c0707;
      font-family: Georgia, 'Times New Roman', Times, serif;
      font-size: 110%;
@@ -94,7 +94,7 @@
 }
 
 .caixa {
-    background-color:lightgray; /* Cor de fundo para visualização */
+    background-color: white; /* Cor de fundo para visualização */
     color: white; /* Cor do texto */
     text-align: center;
     padding: 1px 0;

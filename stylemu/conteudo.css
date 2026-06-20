@@ -65,15 +65,15 @@
      font-family: Georgia, 'Times New Roman', Times, serif;
      font-size: 110%;
      text-align: justify;
-     margin-top: 1vw;
+     margin-top: 0vw;
      margin-bottom: 0vw:
      margin-left: 1%;
      margin-right: 1vw;
 }
 
 .explica__texto {
-    margin-top: 01vw;
-    margin-bottom: 1vw;
+    margin-top: 0vw;
+    margin-bottom: 0vw;
     margin-left: 2vw;
 }
 

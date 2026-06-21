@@ -297,60 +297,108 @@ botaoFullscreen.addEventListener('click', () => {
 
 
 
-
-
 <script>
-    document.getElementById('equacao').addEventListener('input', function() {
-        const eq = this.value;
-        const regex = /[a-zA-Z]+/g;
-        const variaveis = eq.match(regex) || [];
-        const uniqueVars = [...new Set(variaveis)];
+    // Armazena as variáveis encontradas na equação
+    let variaveisAtuais = [];
+
+    function gerarInputs() {
+        const equacao = document.getElementById('equacao').value;
+        const container = document.getElementById('inputs-container');
         
-        let html = '';
-        uniqueVars.forEach(v => {
-            html += `<label>Valor de $${v}$:</label>`;
-            html += `<input type="number" class="var-input" data-var="${v}" placeholder="Valor de ${v}" required>`;
+        // Expressão regular para extrair apenas letras (variáveis)
+        const regex = /[a-zA-Z]+/g;
+        const matches = equacao.match(regex) || [];
+        
+        // Remove duplicatas
+        const variaveisUnicas = [...new Set(matches.map(v => v.toLowerCase()))];
+        
+        // Evita recriar se as variáveis forem as mesmas
+        if (JSON.stringify(variaveisAtuais) === JSON.stringify(variaveisUnicas)) return;
+        
+        variaveisAtuais = variaveisUnicas;
+        container.innerHTML = ''; // Limpa os inputs anteriores
+
+        if (variaveisAtuais.length === 0) return;
+
+        variaveisAtuais.forEach(variavel => {
+            const div = document.createElement('div');
+            div.className = 'input-group';
+            div.innerHTML = `
+                <label>Variável: ${variavel.toUpperCase()}</label>
+                <div class="campo-V">
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px;">Nome:</label>
+                        <input type="text" id="nome-${variavel}" placeholder="Nome (Ex: Raio)">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px;">Símbolo:</label>
+                        <input type="text" id="simbolo-${variavel}" placeholder="Símbolo (Ex: r)">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px;">Unidade:</label>
+                        <input type="text" id="unidade-${variavel}" placeholder="Unidade (Ex: cm)">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px;">Valor:</label>
+                        <input type="number" id="valor-${variavel}" placeholder="Valor numérico">
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
         });
-        document.getElementById('inputs-container').innerHTML = html;
-    });
+    }
 
     function resolverEquacao() {
-        const eq = document.getElementById('equacao').value;
-        const inputs = document.querySelectorAll('.var-input');
+        let equacao = document.getElementById('equacao').value;
         
-        let expressaoFinal = eq;
-        let valoresValidos = true;
-
-        inputs.forEach(input => {
-            const variavel = input.getAttribute('data-var');
-            const valor = input.value;
+        try {
+            // Substitui na equação as variáveis pelos valores digitados pelo usuário
+            for (const variavel of variaveisAtuais) {
+                const valorInput = document.getElementById(`valor-${variavel}`).value;
+                if (!valorInput) {
+                    alert(`Por favor, preencha o valor da variável: ${variavel.toUpperCase()}`);
+                    return;
+                }
+                
+                // Regex global para substituir todas as ocorrências da letra
+                const regex = new RegExp(variavel, 'gi');
+                equacao = equacao.replace(regex, valorInput);
+            }
             
-            if (!valor) {
-                valoresValidos = false;
-                return;
+            // Calcula o resultado final utilizando a biblioteca nativa do JS
+            const resultadoFinal = eval(equacao);
+            
+            // Exibe o resultado e as unidades de medida cadastradas nas variáveis
+            let resumoVariaveis = "Variáveis utilizadas:<br>";
+            for (const variavel of variaveisAtuais) {
+                const nome = document.getElementById(`nome-${variavel}`).value || variavel.toUpperCase();
+                const simbolo = document.getElementById(`simbolo-${variavel}`).value || variavel;
+                const unidade = document.getElementById(`unidade-${variavel}`).value || '';
+                const valor = document.getElementById(`valor-${variavel}`).value;
+                resumoVariaveis += `${nome} (${simbolo}) = ${valor} ${unidade}<br>`;
             }
 
-            // Substitui as letras pelos valores fornecidos (evitando substituição parcial de nomes)
-            const regex = new RegExp(`\\b${variavel}\\b`, 'g');
-            expressaoFinal = expressaoFinal.replace(regex, valor);
-        });
-
-        if (!valoresValidos || expressaoFinal.trim() === '') {
-            alert('Preencha todos os campos e a equação.');
-            return;
-        }
-
-        try {
-            // Remove espaços e calcula usando o avaliador seguro
-            const resultado = eval(expressaoFinal.replace(/\s+/g, ''));
+            const divResultado = document.getElementById('resultado');
+            divResultado.innerHTML = `${resumoVariaveis}<hr><strong>Resultado Final: ${resultadoFinal}</strong>`;
+            divResultado.style.display = 'block';
             
-            document.getElementById('resultado').style.display = 'block';
-            document.getElementById('resultado').innerHTML = `<strong>Resultado:</strong> ${expressaoFinal.replace(/\s+/g, '')} = <strong>${resultado}</strong>`;
         } catch (error) {
-            alert('Equação inválida. Verifique os operadores.');
+            alert('Equação inválida. Verifique a sintaxe matemática.');
         }
     }
 </script>
+
+
+
+
+    
+
+
+
+
+
+
+    
 
 
 

@@ -86,38 +86,5 @@ width: 100%;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: dysplaywidth/2;
-}
- label {
-     font-weight: bold;
-     display: block;
-     margin-bottom: 5px;
- }
- input[type="text"], input[type="number"] {
-     width: 100%;
-     padding: 10px;
-     margin-bottom: 15px;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     box-sizing:
-     border-box;
- }
- button {
- background-color: #4CAF50;
- color: white;
- border: none;
- padding: 12px 20px; 
- border-radius: 4px;
- cursor: pointer;
- width: 100%;
- }
- button:hover {
-     background-color: #45a049; 
- }
-
-.resultado { 
-    margin-top: 20px; 
-    padding: 10px; 
-    background-color: #e7f3fe; 
-    border-left: 6px solid #2196F3; 
+    width: dysplaywidth;
 }

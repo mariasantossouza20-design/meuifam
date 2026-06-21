@@ -325,92 +325,74 @@ botaoFullscreen.addEventListener('click', () => {
     
 
 <script>
-    function gerarInputsVariaveis() {
+    let variaveisGlobais = [];
+
+    function gerarInputs() {
         const equacao = document.getElementById('equacao').value;
         const container = document.getElementById('inputs-container');
-        container.innerHTML = ''; // Limpa o container
+        container.innerHTML = '';
+        variaveisGlobais = [];
 
-        // Regex para encontrar apenas letras minúsculas e maiúsculas (as variáveis)
-        // Ignora espaços e operadores matemáticos
-        const matches = equacao.match(/[a-zA-Z]/g);
+        // Expressão regular para extrair apenas letras
+        const letras = equacao.match(/[a-zA-Z]/g);
         
-        if (!matches) return;
-
-        // Remove letras duplicadas para criar apenas um bloco por variável única
-        const variaveisUnicas = [...new Set(matches.map(v => v.toLowerCase()))];
-
-        variaveisUnicas.forEach(simbolo => {
-            const div = document.createElement('div');
-            div.className = 'variavel-painel';
-            div.id = `bloco-${simbolo}`;
+        if (letras) {
+            // Remove duplicatas
+            const variaveisUnicas = [...new Set(letras.map(v => v.toLowerCase()))];
             
-            div.innerHTML = `
-                <h4>Variável: <strong>${simbolo.toUpperCase()}</strong></h4>
-                <div class="grid-inputs">
-                    <div>
-                        <label>Nome:</label>
-                        <input type="text" id="nome-${simbolo}" placeholder="Ex: Distância">
+            variaveisUnicas.forEach(v => {
+                variaveisGlobais.push(v);
+                container.innerHTML += `
+                    <div class="input-group">
+                        <label>Variável <strong>${v.toUpperCase()}</strong>:</label>
+                        <input type="text" id="nome-${v}" placeholder="Nome (ex: Distância)" required>
+                        <input type="text" id="simb-${v}" placeholder="Símbolo (ex: d)" required>
+                        <input type="text" id="unid-${v}" placeholder="Unidade (ex: metros)" required>
+                        <input type="number" id="val-${v}" placeholder="Valor numérico" step="any" required>
                     </div>
-                    <div>
-                        <label>Símbolo:</label>
-                        <input type="text" id="simbolo-${simbolo}" value="${simbolo.toUpperCase()}" readonly>
-                    </div>
-                    <div>
-                        <label>Unidade:</label>
-                        <input type="text" id="unidade-${simbolo}" placeholder="Ex: metros">
-                    </div>
-                    <div>
-                        <label>Valor:</label>
-                        <input type="text" id="valor-${simbolo}" placeholder="Ex: 10.5">
-                    </div>
-                </div>
-            `;
-            container.appendChild(div);
-        });
+                `;
+            });
+        }
     }
 
     function resolverEquacao() {
-        const equacaoOriginal = document.getElementById('equacao').value;
-        const container = document.getElementById('inputs-container');
-        const paineis = container.getElementsByClassName('variavel-painel');
-        
-        let expressaoFinal = equacaoOriginal;
+        const nomeEq = document.getElementById('nome-equacao').value || "Equação";
+        const simbEq = document.getElementById('simbolo-equacao').value || "";
+        const unidEq = document.getElementById('unidade-equacao').value || "";
+        let equacaoStr = document.getElementById('equacao').value;
 
-        // Itera sobre todos os blocos gerados dinamicamente
-        for (let painel of paineis) {
-            // Pega a letra raiz/identificador a partir do id do bloco
-            const simbolo = painel.id.split('-')[1];
-            
-            const nome = document.getElementById(`nome-${simbolo}`).value;
-            const unidade = document.getElementById(`unidade-${simbolo}`).value;
-            const valorInput = document.getElementById(`valor-${simbolo}`).value;
+        try {
+            // Substitui as letras na equação pelos valores numéricos
+            variaveisGlobais.forEach(v => {
+                const valor = document.getElementById(`val-${v}`).value;
+                if (!valor) throw new Error("Preencha todos os valores!");
+                
+                // Regex global para substituir todas as ocorrências da variável
+                const regex = new RegExp(v, 'gi');
+                equacaoStr = equacaoStr.replace(regex, valor);
+            });
 
-            // Transforma vírgulas em pontos para evitar erros no JS Eval
-            const valor = parseFloat(valorInput.replace(',', '.'));
+            // Avalia o resultado matemático com segurança
+            const valorResultado = eval(equacaoStr);
 
-            if (isNaN(valor)) {
-                alert(`Por favor, preencha um valor numérico válido para a variável "${simbolo.toUpperCase()} (${nome})".`);
+            if (isNaN(valorResultado) || !isFinite(valorResultado)) {
+                alert("Equação inválida. Verifique os valores inseridos.");
                 return;
             }
 
-            // Cria um regex global para substituir todas as ocorrências da letra pelo seu valor
-            const regex = new RegExp(simbolo, 'gi');
-            expressaoFinal = expressaoFinal.replace(regex, valor);
-        }
-
-        try {
-            // Avalia a expressão matemática final segura
-            const resultadoFinal = eval(expressaoFinal);
-
+            // Exibe o resultado com o Nome da Equação, símbolo e unidade
             const divResultado = document.getElementById('resultado');
+            divResultado.innerHTML = `
+                <strong>${nomeEq} (${simbEq})</strong>: 
+                ${valorResultado.toFixed(2).replace('.', ',')} ${unidEq}
+            `;
             divResultado.style.display = 'block';
-            divResultado.innerHTML = `Resultado: $${resultadoFinal.toFixed(2)}$`;
-        } catch (erro) {
-            alert("Equação inválida. Verifique os operadores matemáticos.");
+
+        } catch (error) {
+            alert("Erro ao calcular. Certifique-se de que a equação foi digitada corretamente.");
         }
     }
 </script>
-
 
 
 

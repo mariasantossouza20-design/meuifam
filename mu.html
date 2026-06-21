@@ -233,24 +233,42 @@
 <p class="explica__tipo"> Tríade da Norma: Todo projeto de acessibilidade visa garantir Autonomia, Segurança e Conforto ao usuário.</p>
 </section></div>
     <div class="caixa"><section class="explica">
-       <div class="containereq">
+</section></div>
+    
+</div>
+
+<div>
+
+    <div class="container">
     <h2>Calculadora Dinâmica</h2>
     
-    <label>Digite a Equação (use letras como variáveis):</label>
-    <input type="text" id="equacao" placeholder="Ex: (x + y) * 2" oninput="gerarInputsVariaveis()">
+    <div class="input-group">
+        <label>Nome da Equação:</label>
+        <input type="text" id="nome-equacao" placeholder="Ex: Velocidade Média">
+    </div>
 
-    <label>Configurar Variáveis:</label>
+    <div class="input-group">
+        <label>Símbolo da Equação (ex: $v$):</label>
+        <input type="text" id="simbolo-equacao" placeholder="Ex: v">
+    </div>
+
+    <div class="input-group">
+        <label>Unidade de Medida da Equação:</label>
+        <input type="text" id="unidade-equacao" placeholder="Ex: m/s">
+    </div>
+
+    <div class="input-group">
+        <label>Digite a Equação (use letras como variáveis):</label>
+        <input type="text" id="equacao" placeholder="Ex: (d / t)" oninput="gerarInputs()">
+    </div>
+
     <div id="inputs-container"></div>
-
+    
     <button onclick="resolverEquacao()">Calcular</button>
-
+    
     <div class="resultado" id="resultado" style="display:none;"></div>
 </div>
-
-</section></div>
 </div>
-
-
 
 
 

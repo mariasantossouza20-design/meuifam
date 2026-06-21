@@ -237,38 +237,6 @@
     
 </div>
 
-<div class="calc">
-   <h1 class="titulo-digitando"> C A L C U L E: </h1>
-    <div class="containereq">
-
-    <div class="input-group">
-        <label>Nome da Equação:</label>
-        <input type="text" id="nome-equacao" placeholder="Ex: Velocidade Média">
-    </div>
-
-    <div class="input-group">
-        <label>Símb.:</label>
-        <input type="text" id="simbolo-equacao" placeholder="Ex: v">
-    </div>
-        
-        <div class="input-group">
-        <label>Eq:</label>
-        <input type="text" id="equacao" placeholder="Ex: (d / t)" oninput="gerarInputs()">
-    </div>
-
-    <div class="input-group">
-        <label>Unid. Med.:</label>
-        <input type="text" id="unidade-equacao" placeholder="Ex: m/s">
-    </div>
-
-    
-
-    <div id="inputs-container"></div>
-    <button onclick="resolverEquacao()">Calcular</button>        
-    <div class="resultado" id="resultado" style="display:none;"></div>
-</div>
-</div>
-
 
 
 
@@ -313,92 +281,6 @@ botaoFullscreen.addEventListener('click', () => {
     }
 });
 </script>
-
-
-
-
-
-
-
-
-    
-
-<script>
-    let variaveisGlobais = [];
-
-    function gerarInputs() {
-        const equacao = document.getElementById('equacao').value;
-        const container = document.getElementById('inputs-container');
-        container.innerHTML = '';
-        variaveisGlobais = [];
-
-        // Expressão regular para extrair apenas letras
-        const letras = equacao.match(/[a-zA-Z]/g);
-        
-        if (letras) {
-            // Remove duplicatas
-            const variaveisUnicas = [...new Set(letras.map(v => v.toLowerCase()))];
-            
-            variaveisUnicas.forEach(v => {
-                variaveisGlobais.push(v);
-                container.innerHTML += `
-                    <div class="input-group">
-                        <label>Variável <strong>${v.toUpperCase()}</strong>:</label>
-                        <input type="text" id="nome-${v}" placeholder="Nome (ex: Distância)" required>
-                        <input type="text" id="simb-${v}" placeholder="Símbolo (ex: d)" required>
-                        <input type="text" id="unid-${v}" placeholder="Unidade (ex: metros)" required>
-                        <input type="number" id="val-${v}" placeholder="Valor numérico" step="any" required>
-                    </div>
-                `;
-            });
-        }
-    }
-
-    function resolverEquacao() {
-        const nomeEq = document.getElementById('nome-equacao').value || "Equação";
-        const simbEq = document.getElementById('simbolo-equacao').value || "";
-        const unidEq = document.getElementById('unidade-equacao').value || "";
-        let equacaoStr = document.getElementById('equacao').value;
-
-        try {
-            // Substitui as letras na equação pelos valores numéricos
-            variaveisGlobais.forEach(v => {
-                const valor = document.getElementById(`val-${v}`).value;
-                if (!valor) throw new Error("Preencha todos os valores!");
-                
-                // Regex global para substituir todas as ocorrências da variável
-                const regex = new RegExp(v, 'gi');
-                equacaoStr = equacaoStr.replace(regex, valor);
-            });
-
-            // Avalia o resultado matemático com segurança
-            const valorResultado = eval(equacaoStr);
-
-            if (isNaN(valorResultado) || !isFinite(valorResultado)) {
-                alert("Equação inválida. Verifique os valores inseridos.");
-                return;
-            }
-
-            // Exibe o resultado com o Nome da Equação, símbolo e unidade
-            const divResultado = document.getElementById('resultado');
-            divResultado.innerHTML = `
-                <strong>${nomeEq} (${simbEq})</strong>: 
-                ${valorResultado.toFixed(2).replace('.', ',')} ${unidEq}
-            `;
-            divResultado.style.display = 'block';
-
-        } catch (error) {
-            alert("Erro ao calcular. Certifique-se de que a equação foi digitada corretamente.");
-        }
-    }
-</script>
-
-
-
-    
-
-
-
 
     
 

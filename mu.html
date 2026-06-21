@@ -247,19 +247,21 @@
     </div>
 
     <div class="input-group">
-        <label>Símbolo da Equação (ex: $v$):</label>
+        <label>Símb.:</label>
         <input type="text" id="simbolo-equacao" placeholder="Ex: v">
+    </div>
+        
+        <div class="input-group">
+        <label>Eq:</label>
+        <input type="text" id="equacao" placeholder="Ex: (d / t)" oninput="gerarInputs()">
     </div>
 
     <div class="input-group">
-        <label>Unidade de Medida da Equação:</label>
+        <label>Unid. Med.:</label>
         <input type="text" id="unidade-equacao" placeholder="Ex: m/s">
     </div>
 
-    <div class="input-group">
-        <label>Digite a Equação (use letras como variáveis):</label>
-        <input type="text" id="equacao" placeholder="Ex: (d / t)" oninput="gerarInputs()">
-    </div>
+    
 
     <div id="inputs-container"></div>
     <button onclick="resolverEquacao()">Calcular</button>        

@@ -84,3 +84,13 @@ width: 100%;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     width: 100%;
 }
+
+
+var.vector { 
+    font-style: normal; 
+}
+var.vector span { 
+    margin-left: -0.6em; /* Puxa a seta para cima da letra */
+    vertical-align: 0.4em; /* Ajusta a altura da seta */
+    font-size: 0.6em; /* Deixa a seta um pouco menor que a letra */
+}

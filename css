@@ -1,0 +1,96 @@
+/* Definições de Design Universal */
+:root {
+    --bg-principal: #f9f9f9;
+    --texto-principal: #1a1a1a;
+    --borda-foco: #005fcc;
+    --multiplicador-fonte: 1rem;
+    --filtro-cor-overlay: transparent;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    margin: 0;
+    padding: 24px;
+    line-height: 1.7;
+}
+
+/* Aplicação do Filtro Óptico na Tela via Pseudo-elemento */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--filtro-cor-overlay);
+    pointer-events: none; /* Não bloqueia cliques */
+    z-index: 9999;
+    mix-blend-mode: multiply; /* Mistura a cor da lente ao texto */
+}
+
+/* Link de Acessibilidade */
+.link-atalho {
+    position: absolute;
+    top: -200px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px;
+}
+.link-atalho:focus { top: 0; }
+
+/* Configuração dos Filtros Seletivos */
+.painel-filtros {
+    background: #eef2f7;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+.label-painel {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+.btn-filtro {
+    background: #fff;
+    border: 2px solid #888;
+    padding: 8px 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+.btn-filtro.ativo {
+    border-color: var(--borda-foco);
+    background-color: #e1f0ff;
+    font-weight: bold;
+}
+
+/* Bloco de Teste de Visão */
+.card-info {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+.controles-zoom button {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.controles-zoom button:focus, .btn-filtro:focus {
+    outline: 3px solid var(--borda-foco);
+}
+
+/* Controle Escalonado de Fonte */
+.texto-teste {
+    margin-top: 20px;
+    border-left: 4px solid #ccc;
+    padding-left: 16px;
+}
+.nivel-j1 { font-size: calc(var(--multiplicador-fonte) * 1.0); }
+.nivel-j2 { font-size: calc(var(--multiplicador-fonte) * 1.4); }
+.nivel-j3 { font-size: calc(var(--multiplicador-fonte) * 1.8); }

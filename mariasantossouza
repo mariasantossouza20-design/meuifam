@@ -1,0 +1,203 @@
+index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessibilidade Óptica e Baixa Visão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header role="banner">
+        <a href="#conteudo-principal" class="link-atalho">Pular para o conteúdo</a>
+        <h1>Laboratório de Acessibilidade Óptica</h1>
+        
+        <div class="painel-filtros" role="toolbar" aria-label="Filtros ópticos simulados">
+            <span class="label-painel">Filtros Ópticos (Lentes):</span>
+            <button id="filtro-normal" class="btn-filtro ativo" aria-pressed="true">Sem Filtro</button>
+            <button id="filtro-ambar" class="btn-filtro" aria-pressed="false">Lente Âmbar (Contraste)</button>
+            <button id="filtro-amarelo" class="btn-filtro" aria-pressed="false">Lente Amarela (Fotofobia)</button>
+        </div>
+    </header>
+
+    <main id="conteudo-principal" role="main" tabindex="-1">
+        <section class="card-info" aria-labelledby="tit-auxilios">
+            <h2 id="tit-auxilios">O que são Auxílios Ópticos?</h2>
+            <p>São dispositivos que utilizam lentes especiais para ampliar imagens ou melhorar o contraste. Eles são essenciais para pessoas com patologias como a Degeneração Macular ou a Retinopatia Diabética.</p>
+        </section>
+
+        <section class="card-info" aria-labelledby="tit-simulador">
+            <h2 id="tit-simulador">Teste de Legibilidade Escalonada</h2>
+            <p class="instrucao">Ajuste o tamanho abaixo até conseguir ler o texto com conforto visual.</p>
+            
+            <div class="controles-zoom">
+                <button id="zoom-out" aria-label="Diminuir tamanho da fonte">-</button>
+                <button id="zoom-in" aria-label="Aumentar tamanho da fonte">+</button>
+            </div>
+
+            <div id="bloco-texto-teste" class="texto-teste">
+                <p class="nivel-j1">Nível 1 (Texto Padrão): A acessibilidade óptica devolve a autonomia de leitura.</p>
+                <p class="nivel-j2">Nível 2 (Ampliado): Lentes asféricas reduzem as distorções nas bordas do papel.</p>
+                <p class="nivel-j3">Nível 3 (Alta Ampliação): Sistemas telescópicos auxiliam na visão de longe.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2026 - Tecnologia Assistiva e Ciências da Visão.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+style.css
+/* Definições de Design Universal */
+:root {
+    --bg-principal: #f9f9f9;
+    --texto-principal: #1a1a1a;
+    --borda-foco: #005fcc;
+    --multiplicador-fonte: 1rem;
+    --filtro-cor-overlay: transparent;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    margin: 0;
+    padding: 24px;
+    line-height: 1.7;
+}
+
+/* Aplicação do Filtro Óptico na Tela via Pseudo-elemento */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--filtro-cor-overlay);
+    pointer-events: none; /* Não bloqueia cliques */
+    z-index: 9999;
+    mix-blend-mode: multiply; /* Mistura a cor da lente ao texto */
+}
+
+/* Link de Acessibilidade */
+.link-atalho {
+    position: absolute;
+    top: -200px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px;
+}
+.link-atalho:focus { top: 0; }
+
+/* Configuração dos Filtros Seletivos */
+.painel-filtros {
+    background: #eef2f7;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+.label-painel {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+.btn-filtro {
+    background: #fff;
+    border: 2px solid #888;
+    padding: 8px 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+.btn-filtro.ativo {
+    border-color: var(--borda-foco);
+    background-color: #e1f0ff;
+    font-weight: bold;
+}
+
+/* Bloco de Teste de Visão */
+.card-info {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+.controles-zoom button {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.controles-zoom button:focus, .btn-filtro:focus {
+    outline: 3px solid var(--borda-foco);
+}
+
+/* Controle Escalonado de Fonte */
+.texto-teste {
+    margin-top: 20px;
+    border-left: 4px solid #ccc;
+    padding-left: 16px;
+}
+.nivel-j1 { font-size: calc(var(--multiplicador-fonte) * 1.0); }
+.nivel-j2 { font-size: calc(var(--multiplicador-fonte) * 1.4); }
+.nivel-j3 { font-size: calc(var(--multiplicador-fonte) * 1.8); }
+script.js
+// Seleção dos elementos do DOM
+const root = document.documentElement;
+const btnNormal = document.getElementById('filtro-normal');
+const btnAmbar = document.getElementById('filtro-ambar');
+const btnAmarelo = document.getElementById('filtro-amarelo');
+const btnZoomIn = document.getElementById('zoom-in');
+const btnZoomOut = document.getElementById('zoom-out');
+
+let escalaFonte = 1.0;
+
+// Função para redefinir estados dos botões de filtro
+function atualizarBotoesFiltro(botaoAtivo) {
+    document.querySelectorAll('.btn-filtro').forEach(btn => {
+        btn.classList.remove('ativo');
+        btn.setAttribute('aria-pressed', 'false');
+    });
+    botaoAtivo.classList.add('ativo');
+    botaoAtivo.setAttribute('aria-pressed', 'true');
+}
+
+// Lógica dos Filtros Ópticos Seletivos
+btnNormal.addEventListener('click', () => {
+    root.style.setProperty('--filtro-cor-overlay', 'transparent');
+    atualizarBotoesFiltro(btnNormal);
+});
+
+btnAmbar.addEventListener('click', () => {
+    // Filtro Âmbar: Melhora o contraste bloqueando luz azul (simulação digital)
+    root.style.setProperty('--filtro-cor-overlay', 'rgba(255, 126, 0, 0.15)');
+    atualizarBotoesFiltro(btnAmbar);
+});
+
+btnAmarelo.addEventListener('click', () => {
+    // Filtro Amarelo: Reduz fotofobia e otimiza iluminação interna
+    root.style.setProperty('--filtro-cor-overlay', 'rgba(255, 255, 0, 0.2)');
+    atualizarBotoesFiltro(btnAmarelo);
+});
+
+// Lógica de Escalonamento Óptico (Zoom)
+btnZoomIn.addEventListener('click', () => {
+    if (escalaFonte < 2.5) {
+        escalaFonte += 0.2;
+        root.style.setProperty('--multiplicador-fonte', `${escalaFonte}rem`);
+    }
+});
+
+btnZoomOut.addEventListener('click', () => {
+    if (escalaFonte > 0.8) {
+        escalaFonte -= 0.2;
+        root.style.setProperty('--multiplicador-fonte', `${escalaFonte}rem`);
+    }
+});
